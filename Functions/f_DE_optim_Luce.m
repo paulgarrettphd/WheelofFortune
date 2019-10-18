@@ -4,7 +4,8 @@ if ~exist('PlotCheck', 'var'), PlotCheck = true; end
 % Model (1963) to empirical data
 % Outputs the bias and similarity parameters, with options for the full
 % similairty matrix and the LogLikelihood values for the final parameters
-% Written by Zach Howard, PhD Candidate at UoN with Input from Nathan Evans
+% Written by Paul Garrett, PhD Candidate at UoN with Input from Nathan
+% Evans and Zachary Howard
 %% This script will use an approximation of Differential Evolution MCMC to estimate parameters of Luce's Choice Model (1963)
 % DE-MCMC involves a number of chains iterating parameter values. On each step, the current parameter values for each chain are put into...
 % the likelihood function for the model. Then, the values of the chain are merged with the difference of two other chains (this is a 'jump')...

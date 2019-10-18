@@ -1,5 +1,5 @@
 function predicted = f_predicted_sim_choice_Townsend(bias, sim2, nstimuli)
-% Written by Zach Howard, PhD Candidate at the University of Newcastle
+% Written by Paul Garrett, PhD Candidate at the University of Newcastle
 % Adapted from code found on the University of Indiana website
 %% Function to take in bias and similarity values, and give predicted probabilities
     % Takes three biases, per n responses
