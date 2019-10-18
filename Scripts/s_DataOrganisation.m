@@ -12,8 +12,9 @@
 
 %% Contrast Acc
 
+% Preallocate NAN array for speed
 Contrast = nan( size(Data.exp,1) / numel(unique(Data.exp(:,13,1))), numel(unique(Data.exp(:,13,1))), size(Data.exp,3) );
-
+% For Each Subject (p) make accuracy array for each contrast level (5)
 for p = 1:size(Data.exp,3)
     data = sortrows(Data.exp(:,:,p), 13);
     acc  = data(:, 8);
@@ -23,10 +24,10 @@ Data.ContrastLvl = Contrast;
 clear Contrast p data acc 
 
 %% Number Acc
-
+% Preallocate
 Response = nan( size(Data.exp,1) / numel(unique(Data.exp(:,6,1))), numel(unique(Data.exp(:,6,1))), size(Data.exp,3) );
 RespAcc  = Response;
-
+% Organise accuracy and responsed-to stimuli for each condtion (1--9) for each participant (3rd dim)
 for p = 1:size(Data.exp,3)
     data = sortrows(Data.exp(:,:,p), 6);
     acc  = data(:, 8);
@@ -74,7 +75,7 @@ clear cnds rsps Fq Cnd Rsp
 
 
 %% Staircase Contrast
-
+% Save Separate data array for the practice trials so that the staircase procedure may be plotted.
 Data.PracticeContrast = Data.prac(:,12,:);
 Data.PracticeContrast = permute(Data.PracticeContrast, [1,3,2]);
 
