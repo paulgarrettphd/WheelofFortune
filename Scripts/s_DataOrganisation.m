@@ -5,6 +5,11 @@
 % To be called as part of the ongoing analysis scripts to easily clean and
 % store data before subsiquent complex analyses.
 
+% Note: All data is stored with a minimum of 3 dimensions
+% - Rows are trials; Columns are conditions; 3rd Dims are participants
+% - Fourth Dims, where used, are lanugage conditions (ENG, CHN, THI, DOT); 
+% - Fith Dims are English or Chinese Cohort, when applicable.
+
 %% Contrast Acc
 
 Contrast = nan( size(Data.exp,1) / numel(unique(Data.exp(:,13,1))), numel(unique(Data.exp(:,13,1))), size(Data.exp,3) );
