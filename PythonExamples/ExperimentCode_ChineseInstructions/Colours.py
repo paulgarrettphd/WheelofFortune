@@ -1,0 +1,37 @@
+###    COLOURS    ###
+#                 R    G    B
+BLACK        = (  0,   0,   0)
+SKY_BLUE     = (21 , 155, 243)
+LIGHT_PURPLE = (151, 135, 236)
+LIGHT_PINK   = (200, 119, 208)
+PINK         = (228, 108, 165)
+ORANGE_PINK  = (241, 107, 94 )
+ORANGE       = (224, 123, 29 )
+GREEN        = (126, 194, 46 )
+LIME         = (93 , 197, 84 )
+LIGHT_GREEN  = (32 , 200, 119)
+CYAN         = (  0, 255, 255)
+GRAY         = (128, 128, 128)
+GREEN        = (  0, 255,   0)
+NAVYBLUE     = ( 60,  60, 100)
+ORANGE       = (255, 128,   0)
+PURPLE       = (255,   0, 255)
+RED         = (255,   0,   0)
+WHITE        = (255, 255, 255)
+YELLOW       = (255, 255,   0)
+#MUNSELL_BLUE= (64, 79, 223)
+#MUNSELL_RED= (241, 29, 34)
+BLUE         = (64,  79,  223)
+#RED          = (241, 29,  34 )
+LampBlue =     (18,  126,  190)
+LampOutline  = (24,  95,  173)
+
+## Grey Scale Colours for SFT Experiment
+GRAY_1 = (0,   0,   0  )
+GRAY_2 = (8,  8,  8 )
+GRAY_3 = (20, 20, 20)
+GRAY_4 = (80, 80, 80)
+GRAY_5 = (255, 255, 255)
+GRAY_6 = (240, 240, 240)
+
+GRAYS = [GRAY_1, GRAY_2, GRAY_3, GRAY_4, GRAY_5]
