@@ -98,7 +98,7 @@ for ( lang in 1:2 ){
     Count = Count + 1
     
     # Save each subplot to Plots object with modified theme
-    Plts[[Count]] = ggplot(CzTable[CzTable$Language==1 & CzTable$StoppingRule==1, c(1,2,5)],
+    Plts[[Count]] = ggplot(CzTable[CzTable$Language==lang & CzTable$StoppingRule==SR, c(1,2,5)],
       aes(x=WordType,y=Cz, fill=WordType, alpha=Alpha)) +
       # Violin Plot
       geom_violin(trim=FALSE, color = NA) +
@@ -118,8 +118,8 @@ for ( lang in 1:2 ){
 
 # Display in new window
 windows(); ggarrange(Plts[[1]], Plts[[2]], Plts[[3]], Plts[[4]],
-                     labels = c("A",'B',"C", "D"),
-                     ncol = 2, nrow = 2)
+           labels = c("A",'B',"C", "D"),
+           ncol = 2, nrow = 2)
 
 
 
