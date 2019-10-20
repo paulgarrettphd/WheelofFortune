@@ -73,58 +73,54 @@ CzTable = melt(CzArray, varnames=c('Subject','WordType','StoppingRule','Language
 CzTable[1:4] <- lapply(CzTable[1:4], factor)
 
 
+
+# Set Plot Specifications
 MyTheme = theme(plot.title = element_text(face = "bold", hjust = 0.5, size = 16), 
             axis.title = element_text(face = 'bold', size = 14),
             axis.text  = element_text(face = 'bold', size=12), 
             legend.position = 'none')
 
+# Set colors and limits
 Alpha = .5
- 
-ENG_AND = ggplot(CzTable[CzTable$Language==1 & CzTable$StoppingRule==1, c(1,2,5)],
-                  aes(x=WordType,y=Cz, fill=WordType, alpha=Alpha)) +
-                  geom_violin(trim=FALSE, color = NA) +
-                  theme_classic() +
-                  MyTheme +
-                  labs(title ="English AND", x = "Word Type", y = "Cz") +
-                  ylim(-10, 6) +
-                  scale_x_discrete(breaks=c("1","2","3"), labels=c("Word","Pseudo","NonWord")) +
-                  scale_fill_manual(values=c("#1E88E5", "#FFC107", "#D81B60"))
+Ymax = 6
+Ymin = -10
 
-ENG_OR  = ggplot(CzTable[CzTable$Language==1 & CzTable$StoppingRule==2, c(1,2,5)],
-                  aes(x=WordType,y=Cz, fill=WordType, alpha=Alpha)) +
-                  geom_violin(trim=FALSE, color = NA) +
-                  theme_classic() +
-                  MyTheme +
-                  labs(title ="English OR", x = "Word Type", y = "Cz") +
-                  ylim(-10, 6) +
-                  scale_x_discrete(breaks=c("1","2","3"), labels=c("Word","Pseudo","NonWord")) +
-                  scale_fill_manual(values=c("#1E88E5", "#FFC107", "#D81B60"))
+# Object to hold subplots
+Plts = list()
+Count = 0
+Titles = list('English AND','English OR','Chinese AND','Chinese OR')
 
-CHN_AND = ggplot(CzTable[CzTable$Language==2 & CzTable$StoppingRule==1, c(1,2,5)],
-                  aes(x=WordType,y=Cz, fill=WordType, alpha=Alpha)) +
-                  geom_violin(trim=FALSE, color = NA) +
-                  theme_classic() +
-                  MyTheme +
-                  labs(title ="Chinese AND", x = "Word Type", y = "Cz") +
-                  ylim(-10, 6) +
-                  scale_x_discrete(breaks=c("1","2","3"), labels=c("Word","Pseudo","NonWord")) +
-                  scale_fill_manual(values=c("#1E88E5", "#FFC107", "#D81B60"))
+# Loop for Languages and Stopping Rules
+for ( lang in 1:2 ){
+  for ( SR in 1:2 ) {
+    
+    # Iterate for each subplot in object
+    Count = Count + 1
+    
+    # Save each subplot to Plots object with modified theme
+    Plts[[Count]] = ggplot(CzTable[CzTable$Language==1 & CzTable$StoppingRule==1, c(1,2,5)],
+      aes(x=WordType,y=Cz, fill=WordType, alpha=Alpha)) +
+      # Violin Plot
+      geom_violin(trim=FALSE, color = NA) +
+      # Set theme
+      theme_classic() +
+      MyTheme +
+      # Set titles
+      labs(title = Titles[[Count]], x = "Word Type", y = "Cz") +
+      # Set limits
+      ylim(Ymin, Ymax) +
+      # Set Labels
+      scale_x_discrete(breaks=c("1","2","3"), labels=c("Word","Pseudo","NonWord")) +
+      # Make color blind scheme
+      scale_fill_manual(values=c("#1E88E5", "#FFC107", "#D81B60"))
+  }
+}
 
-CHN_OR  = ggplot(CzTable[CzTable$Language==2 & CzTable$StoppingRule==2, c(1,2,5)],
-                  aes(x=WordType,y=Cz, fill=WordType, alpha=Alpha)) +
-                  geom_violin(trim=FALSE, color = NA) +
-                  theme_classic() +
-                  MyTheme +
-                  labs(title ="Chinese OR", x = "Word Type", y = "Cz") +
-                  ylim(-10, 6) +
-                  scale_x_discrete(breaks=c("1","2","3"), labels=c("Word","Pseudo","NonWord")) +
-                  scale_fill_manual(values=c("#1E88E5", "#FFC107", "#D81B60"))
-                        
+# Display in new window
+windows(); ggarrange(Plts[[1]], Plts[[2]], Plts[[3]], Plts[[4]],
+                     labels = c("A",'B',"C", "D"),
+                     ncol = 2, nrow = 2)
 
-
-windows(); ggarrange(CHN_AND, CHN_OR, ENG_AND, ENG_OR + rremove("x.text"),
-           labels = c("A",'B',"C", "D"),
-           ncol = 2, nrow = 2)
 
 
 
